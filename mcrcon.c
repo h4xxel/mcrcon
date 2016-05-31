@@ -233,10 +233,13 @@ int main(int argc, char *argv[])
     int terminal_mode = 0;
 
     char *host = NULL;
-    char *pass = "";
+    char *pass = NULL;
     char *port = "25575";
 
     if(argc < 2) usage();
+
+    if(!(pass = getenv("MCRCON_PASSWORD")))
+	    pass = "";
 
     opterr = 1; /* default error handler enabled */
     while((opt = getopt(argc, argv, "tcshH:p:P:i")) != -1)
